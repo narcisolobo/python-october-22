@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <title>The Vinyl Countdown</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">ALBUM DETAILS</h5>
+          <div class="card-body">
+            <p>ID: {{ album.id }}</p>
+            <p>TITLE: {{ album.title }}</p>
+            <p>artist: {{ album.artist }}</p>
+            <p>description: {{ album.description }}</p>
+            <p>is_owned: {{ 'yes' if album.is_owned else 'no' }}</p>
+            <p>created_at: {{ album.created_at }}</p>
+            <p>updated_at: {{ album.updated_at }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

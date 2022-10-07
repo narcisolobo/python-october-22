@@ -1,0 +1,15 @@
+INSERT INTO ninjas
+(first_name, last_name, age)
+VALUES ('Gonzo', 'the Great', 31);
+
+SELECT * FROM ninjas;
+
+UPDATE ninjas
+SET age = 37
+WHERE id = 2;
+-- ELIMINATING THE WHERE CLAUSE WILL UPDATE EVERY ROW
+
+DELETE FROM ninjas
+WHERE id != 4;
+
+-- ELIMINATING THE WHERE CLAUSE DELETES ALL ROWS FROM TABLE

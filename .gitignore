@@ -1,0 +1,7 @@
+python-october-22.code-workspace
+.DS_Store
+__pycache__
+counter
+countries.sql
+Pipfile
+Pipfile.lock

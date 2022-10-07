@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Octodex</title>
+    <style>
+        .octodex {
+            background-color: {{ data.bgcolor }};
+        }
+    </style>
+</head>
+<body>
+    <h1>Octodex</h1>
+    <h2>Hello, {{ data.person }}!</h2>
+    {% for i in range(data.num) %}
+        <img class="octodex" src="{{ url_for('static', filename='daftpunktocat-guy.gif') }}" alt="Daft Punk">
+    {% endfor %}
+</body>
+</html>

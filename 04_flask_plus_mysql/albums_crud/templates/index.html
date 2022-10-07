@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <title>The Vinyl Countdown</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>TITLE</th>
+              <th>ARTIST</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for album in albums %}
+              <tr>
+                <td>{{ album.id }}</td>
+                <td>
+                  <a href="/albums/{{ album.id }}">{{ album.title }}</a>
+                </td>
+                <td>{{ album.artist }}</td>
+                <td>
+                  <a href="/albums/{{ album.id }}/edit">EDIT ALBUM</a>
+                  <a href="/albums/{{ album.id }}/delete">DELETE ALBUM</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
