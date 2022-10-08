@@ -1,5 +1,7 @@
+from pprint import pprint
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import flash
+from flask_app.models import album_model
 import re # regular expression REGEX
 
 DATABASE = 'vinyl_countdown'
@@ -13,6 +15,7 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.albums = []
     
     def __repr__(self):
         return f'<User: {self.username}>'
@@ -61,6 +64,31 @@ class User:
         if len(results) > 0:
             return User(results[0])
         return None
+    
+    @classmethod
+    def find_by_id_with_albums(cls, data):
+        query = 'SELECT * FROM users JOIN albums ON users.id = albums.creator_id WHERE users.id = %(id)s;'
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        pprint(results)
+        if len(results) > 0:
+            user = User(results[0])
+
+            for result in results:
+                album_data = {
+                    'id': result['albums.id'],
+                    'title': result['title'],
+                    'artist': result['artist'],
+                    'description': result['description'],
+                    'is_owned': result['is_owned'],
+                    'release_date': result['release_date'],
+                    'creator_id': result['creator_id'],
+                    'created_at': result['albums.created_at'],
+                    'updated_at': result['albums.updated_at'],
+                    'creator': user
+                }
+                album = album_model.Album(album_data)
+                user.albums.append(album)
+        return user
     
     @classmethod
     def save(cls, data):

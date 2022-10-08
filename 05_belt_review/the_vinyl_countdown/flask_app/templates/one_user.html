@@ -41,7 +41,7 @@
     <main class="container">
       <div class="row">
         <div class="col">
-          <h2 class="mb-3">Welcome, {{ user.username }}. Here are all the albums.</h2>
+          <h2 class="mb-3">Albums uploaded by {{ creator.username }}</h2>
           <table class="table">
             <thead>
               <th>ID</th>
@@ -52,7 +52,7 @@
               <th>ACTIONS</th>
             </thead>
             <tbody>
-              {% for album in albums %}
+              {% for album in creator.albums %}
                 <tr>
                   <td>{{ album.id }}</td>
                   <td>{{ album.title }}</td>

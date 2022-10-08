@@ -53,7 +53,7 @@ def edit_album(album_id):
     data = {
         'id': album_id
     }
-    album = Album.find_by_id(data)
+    album = Album.find_by_id_with_creator(data)
     print(f'**** FOUND - ALBUM ID: {album.id} ****')
     return render_template('edit_album.html', album = album)
 

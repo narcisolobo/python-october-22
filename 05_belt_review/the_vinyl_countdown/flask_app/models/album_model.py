@@ -1,7 +1,7 @@
 from pprint import pprint
 from flask_app import flash
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models.user_model import User
+from flask_app.models import user_model
 
 DATABASE = 'vinyl_countdown'
 
@@ -70,7 +70,7 @@ class Album:
             user_data = {
                 'id': result['creator_id']
             }
-            creator = User.find_by_id(user_data)
+            creator = user_model.User.find_by_id(user_data)
             album_data = {
                 'id': result['id'],
                 'title': result['title'],
@@ -106,7 +106,7 @@ class Album:
         user_data = {
             'id': results[0]['creator_id']
         }
-        creator = User.find_by_id(user_data)
+        creator = user_model.User.find_by_id(user_data)
         album_data = {
             'id': results[0]['id'],
             'title': results[0]['title'],

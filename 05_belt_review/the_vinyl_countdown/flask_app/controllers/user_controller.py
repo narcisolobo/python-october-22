@@ -63,6 +63,14 @@ def login_user():
     session['user_id'] = found_user.id
     return redirect('/albums')
 
+@app.get('/users/<int:user_id>')
+def one_user(user_id):
+    data = {
+        'id': user_id
+    }
+    creator = User.find_by_id_with_albums(data)
+    return render_template('one_user.html', creator = creator)
+
 @app.get('/users/logout')
 def logout():
     session.clear()
