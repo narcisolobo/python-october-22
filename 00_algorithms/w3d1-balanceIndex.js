@@ -16,16 +16,6 @@ const expected1 = 2;
 const nums2 = [9, 9];
 const expected2 = -1;
 
-/**
- * Finds the balance index in the given array where the sum to the left of the
- *    index is equal to the sum to the right of the index.
- * - Time: O(?).
- * - Space: O(?).
- * @param {Array<number>} nums
- * @returns {number} The balance index or -1 if there is none.
- */
-function balanceIndex(nums) {}
-
 /*****************************************************************************/
 
 /**
@@ -54,6 +44,12 @@ function balanceIndex(nums = []) {
   }
   return -1;
 }
+
+const balancePoint = balanceIndex(nums1);
+console.log(balancePoint);
+
+const balancePoint2 = balanceIndex(nums2);
+console.log(balancePoint2);
 
 /**
  * - Time: O(n/2) -> O(n) linear, n/2 since looping from outside towards center.
