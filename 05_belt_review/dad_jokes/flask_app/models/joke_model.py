@@ -1,5 +1,7 @@
+from pprint import pprint
 from flask_app import flash
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models.dad_model import Dad
 
 DATABASE = 'dad_jokes_red'
 
@@ -12,6 +14,7 @@ class Joke:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.dad_id = data['dad_id']
+        self.dad = data['dad']
     
     def __repr__(self):
         return f'<Joke: {self.setup}>'
@@ -41,7 +44,21 @@ class Joke:
         results = connectToMySQL(DATABASE).query_db(query)
         jokes = []
         for result in results:
-            jokes.append(Joke(result))
+            dad_data = {
+                'id': result['dad_id']
+            }
+            dad = Dad.find_by_id(dad_data)
+            joke_data = {
+                'id': result['id'],
+                'setup': result['setup'],
+                'punchline': result['punchline'],
+                'created_at': result['created_at'],
+                'updated_at': result['updated_at'],
+                'dad_id': result['dad_id'],
+                'dad': dad,
+            }
+            joke = Joke(joke_data)
+            jokes.append(joke)
         return jokes
 
     # find one joke by id
@@ -50,6 +67,28 @@ class Joke:
         query = 'SELECT * from jokes WHERE id = %(id)s;'
         results = connectToMySQL(DATABASE).query_db(query, data)
         joke = Joke(results[0])
+        return joke
+
+    # find one joke by id with creator
+    @classmethod
+    def find_by_id_with_creator(cls, data):
+        query = 'SELECT * from jokes WHERE id = %(id)s;'
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        pprint(results)
+        dad_data = {
+            'id': results[0]['dad_id']
+        }
+        dad = Dad.find_by_id(dad_data)
+        joke_data = {
+            'id': results[0]['id'],
+            'setup': results[0]['setup'],
+            'punchline': results[0]['punchline'],
+            'created_at': results[0]['created_at'],
+            'updated_at': results[0]['updated_at'],
+            'dad_id': results[0]['dad_id'],
+            'dad': dad,
+        }
+        joke = Joke(joke_data)
         return joke
 
     # update one joke by id

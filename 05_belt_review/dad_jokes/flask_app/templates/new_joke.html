@@ -13,15 +13,32 @@
     <title>Dad Jokes</title>
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <h1>Dad Jokes</h1>
-        </div>
-        <div class="col">
-          <a href="/jokes">Back to All Jokes</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+      <div class="container">
+        <a class="navbar-brand" href="/jokes">Dad Jokes</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="/jokes">All Jokes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/jokes/new">Add a Joke</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/dads/logout">Logout</a>
+            </li>
+          </ul>
         </div>
       </div>
+    </nav>
+    <div class="container">
       <div class="row">
         <div class="col">
           <h2>Add a Dad Joke</h2>

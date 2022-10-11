@@ -41,32 +41,46 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h2>Welcome, {{ dad.username }}</h2>
+          <h2>Edit Dad Joke</h2>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          {% for joke in jokes %}
-            <div class="card shadow mt-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-4">Setup</div>
-                  <div class="col-8">{{ joke.setup }}</div>
+          <div class="card">
+            <div class="card-body">
+              {% with messages = get_flashed_messages(with_categories = true) %}
+              <form action="/jokes/{{ joke.id }}/update" method="post">
+                <input type="hidden" name="dad_id" value="{{ joke.dad_id }}">
+                <input type="hidden" name="id" value="{{ joke.id }}">
+                <div class="mb-3">
+                  <label for="setup" class="form-label">Setup:</label>
+                  <textarea name="setup" id="setup" class="form-control">{{ joke.setup }}</textarea>
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      {% if category == 'setup' %}
+                        <span class="form-text text-danger">{{ message }}</span>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
                 </div>
-                <div class="row">
-                  <div class="col-4">Punchline</div>
-                  <div class="col-8">{{ joke.punchline }}</div>
+                <div class="mb-3">
+                  <label for="punchline" class="form-label">Punchline:</label>
+                  <textarea name="punchline" id="punchline" class="form-control">{{ joke.punchline }}</textarea>
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      {% if category == 'punchline' %}
+                        <span class="form-text text-danger">{{ message }}</span>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
                 </div>
-                <div class="row">
-                  <div class="col-4">Uploaded By:</div>
-                  <div class="col-8">{{ joke.dad.username }}</div>
+                <div class="d-flex justify-content-end">
+                  <input type="submit" value="EDIT JOKE" class="btn btn-primary">
                 </div>
-              </div>
-              <div class="card-footer d-flex justify-content-end">
-                <a href="/jokes/{{ joke.id }}">View</a>
-              </div>
+              </form>
+              {% endwith %}
             </div>
-          {% endfor %}
+          </div>
         </div>
       </div>
     </div>
