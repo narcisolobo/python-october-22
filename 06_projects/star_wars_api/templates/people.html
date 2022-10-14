@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+You chose the people resource at id: {{ res_id }}.
+<h1>{{ person.name }}</h1>
+{% for key in person %}
+  <p>
+    <strong>{{ key }}</strong>
+    {{ person[key] }}
+  </p>
+{% endfor %}
+{% endblock main %}

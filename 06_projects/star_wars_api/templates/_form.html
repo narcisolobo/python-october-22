@@ -1,0 +1,19 @@
+<form action="/swapi/go" method="post">
+  <div class="row">
+    <label for="resource" class="col-sm-2 col-form-label">Resource</label>
+    <div class="col-sm-6">
+      <select name="resource" id="resource" class="form-select">
+        {% for resource in resources %}
+          <option value="{{ resource }}">{{ resource|title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <label for="res_id" class="col-sm-1 col-form-label">ID</label>
+    <div class="col-sm-1">
+      <input type="number" name="res_id" id="res_id" class="form-control">
+    </div>
+    <div class="col-sm-2">
+      <input type="submit" value="GO" class="btn btn-primary w-100">
+    </div>
+  </div>
+</form>
