@@ -13,6 +13,14 @@ const str2 = "";
 const expected2 = "";
 
 
-function rStringReverse(str) {
-  // your code here
+function rStringReverse(str = '') {
+  if (str === "") {
+    return "";
+  }
+  const strWithoutFirstChar = str.slice(1);
+  const firstChar = str[0];
+  return rStringReverse(strWithoutFirstChar) + firstChar;
 }
+
+const result = rStringReverse('abc')
+console.log(result);
